@@ -1,8 +1,17 @@
 FROM openjdk:19
 
-WORKDIR /app
+WORKDIR /app/msvc-usuarios
 
-COPY ./target/msvc-usuarios-0.0.1-SNAPSHOT.jar .
+COPY ./pom.xml /app
+COPY ./msvc-usuarios/.mvn ./.mvn
+COPY ./msvc-usuarios/mvnw .
+COPY ./msvc-usuarios/pom.xml .
+
+RUN ./mvnw clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repackage.skip && rm -r ./target/
+
+COPY ./msvc-usuarios/src ./src
+
+RUN ./mvnw clean package -DskipTests
 
 EXPOSE 8001
 

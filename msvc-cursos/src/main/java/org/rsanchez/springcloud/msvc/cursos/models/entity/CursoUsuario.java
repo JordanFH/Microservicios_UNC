@@ -3,7 +3,7 @@ package org.rsanchez.springcloud.msvc.cursos.models.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="matriculas")
+@Table(name="cursos_usuarios")
 public class CursoUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
